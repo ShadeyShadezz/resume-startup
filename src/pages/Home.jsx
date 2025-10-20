@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import AICareerAdvisor from "../components/AICareerAdvisor.jsx";
 
 export default function Home() {
   return (
@@ -10,6 +11,8 @@ export default function Home() {
           <Link to="/applicants">Go to Applicants →</Link>
         </div>
       </section>
+      
+      <AICareerAdvisor />
     </main>
   );
 }
