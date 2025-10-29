@@ -1,15 +1,157 @@
 import { useState } from "react";
 
 const DEFAULT_PROJECTS = [
-  { id: 1, title: "Business Pitch" },
-  { id: 2, title: "Budget Challenge" },
-  { id: 3, title: "Career Exploration" },
+  { id: 1, title: "Business Pitch", requiredStrength: "Communication" },
+  { id: 2, title: "Budget Challenge", requiredStrength: "Math" },
+  { id: 3, title: "Career Exploration", requiredStrength: "Research" },
+  { id: 4, title: "Credit Card Management", requiredStrength: "Financial Literacy" },
+  { id: 5, title: "Tax Document Understanding", requiredStrength: "Attention to Detail" },
+  { id: 6, title: "Apartment Application", requiredStrength: "Organization" },
+  { id: 7, title: "Employment Application", requiredStrength: "Communication" },
+  { id: 8, title: "Resume Building", requiredStrength: "Writing" },
+  { id: 9, title: "Interview Preparation", requiredStrength: "Public Speaking" },
+  { id: 10, title: "Networking Skills", requiredStrength: "Social Skills" },
 ];
 
 const MIN_WORK_ETHIC = 6;
 
+// Pre-generated applicants with variety and rivals
+const INITIAL_APPLICANTS = [
+  {
+    id: 1001,
+    name: "Alex Rivera",
+    strength: "Communication",
+    weakness: "Time Management",
+    workEthic: 8,
+    willing: true,
+    isRival: false,
+    bestFitProject: "Business Pitch",
+  },
+  {
+    id: 1002,
+    name: "Jordan Chen",
+    strength: "Math",
+    weakness: "Public Speaking",
+    workEthic: 9,
+    willing: true,
+    isRival: false,
+    bestFitProject: "Budget Challenge",
+  },
+  {
+    id: 1003,
+    name: "Taylor Morgan",
+    strength: "Research",
+    weakness: "Teamwork",
+    workEthic: 7,
+    willing: true,
+    isRival: false,
+    bestFitProject: "Career Exploration",
+  },
+  {
+    id: 1004,
+    name: "Casey Blake",
+    strength: "Financial Literacy",
+    weakness: "Organization",
+    workEthic: 8,
+    willing: true,
+    isRival: false,
+    bestFitProject: "Credit Card Management",
+  },
+  {
+    id: 1005,
+    name: "Morgan Davis",
+    strength: "Attention to Detail",
+    weakness: "Speed",
+    workEthic: 9,
+    willing: true,
+    isRival: false,
+    bestFitProject: "Tax Document Understanding",
+  },
+  {
+    id: 1006,
+    name: "Riley Thompson",
+    strength: "Organization",
+    weakness: "Decision Making",
+    workEthic: 7,
+    willing: true,
+    isRival: false,
+    bestFitProject: "Apartment Application",
+  },
+  {
+    id: 1007,
+    name: "Sam Parker",
+    strength: "Writing",
+    weakness: "Technical Skills",
+    workEthic: 8,
+    willing: true,
+    isRival: false,
+    bestFitProject: "Resume Building",
+  },
+  {
+    id: 1008,
+    name: "Avery Johnson",
+    strength: "Public Speaking",
+    weakness: "Nervousness",
+    workEthic: 6,
+    willing: true,
+    isRival: false,
+    bestFitProject: "Interview Preparation",
+  },
+  {
+    id: 1009,
+    name: "Quinn Martinez",
+    strength: "Social Skills",
+    weakness: "Follow-through",
+    workEthic: 7,
+    willing: true,
+    isRival: false,
+    bestFitProject: "Networking Skills",
+  },
+  // Rival Applicants - Lower work ethic or unwilling to learn
+  {
+    id: 2001,
+    name: "Blake Winters",
+    strength: "Communication",
+    weakness: "Attitude",
+    workEthic: 4,
+    willing: false,
+    isRival: true,
+    bestFitProject: "Business Pitch",
+  },
+  {
+    id: 2002,
+    name: "Drew Sterling",
+    strength: "Math",
+    weakness: "Laziness",
+    workEthic: 3,
+    willing: false,
+    isRival: true,
+    bestFitProject: "Budget Challenge",
+  },
+  {
+    id: 2003,
+    name: "Skyler Fox",
+    strength: "Research",
+    weakness: "Procrastination",
+    workEthic: 5,
+    willing: false,
+    isRival: true,
+    bestFitProject: "Career Exploration",
+  },
+  {
+    id: 2004,
+    name: "Reese Knight",
+    strength: "Financial Literacy",
+    weakness: "Carelessness",
+    workEthic: 4,
+    willing: false,
+    isRival: true,
+    bestFitProject: "Credit Card Management",
+  },
+];
+
 export default function Applicants() {
-  const [applicants, setApplicants] = useState([]);
+  const [applicants, setApplicants] = useState(INITIAL_APPLICANTS);
   const [students, setStudents] = useState([]);
   const [projects, setProjects] = useState(DEFAULT_PROJECTS);
   const [filterEthic, setFilterEthic] = useState(MIN_WORK_ETHIC);
@@ -95,8 +237,11 @@ export default function Applicants() {
           <p style={{ color: "#888", fontStyle: "italic" }}>No applicants yet.</p>
         ) : (
           applicants.map((app) => (
-            <div key={app.id} className="card">
-              <h4>{app.name}</h4>
+            <div key={app.id} className={`card ${app.isRival ? "rival-card" : ""}`}>
+              <div className="applicant-header">
+                <h4>{app.name}</h4>
+                {app.isRival && <span className="rival-badge">⚠️ Rival</span>}
+              </div>
               <p>
                 <b>Strength:</b> {app.strength}
               </p>
@@ -108,6 +253,9 @@ export default function Applicants() {
               </p>
               <p>
                 <b>Willing to Learn:</b> {app.willing ? "Yes" : "No"}
+              </p>
+              <p>
+                <b>Best Fit Project:</b> {app.bestFitProject}
               </p>
               <button onClick={() => acceptApplicant(app.id)}>Accept</button>
               <button onClick={() => rejectApplicant(app.id)}>Reject</button>

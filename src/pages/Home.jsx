@@ -91,6 +91,64 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Overview Section */}
+      <section className="overview-section">
+        <h2>📋 Overview of Purpose for Site</h2>
+        <p>
+          The Career & Adulting Lab is designed to bridge the gap between classroom learning and real-world readiness.
+          We provide hands-on projects, mentorship opportunities, and practical life skills training to help students
+          navigate their professional journey with confidence. From managing finances to building careers, we equip
+          young adults with the tools they need to thrive in today's dynamic world.
+        </p>
+      </section>
+
+      {/* Home Info Grid */}
+      <div className="home-info-grid">
+        <div className="info-box">
+          <h3>👥 Collaborators in Business(es)</h3>
+          <p>
+            Connect with industry professionals, mentors, and business leaders who provide real-world insights
+            and guidance. Our collaborators bring diverse expertise in entrepreneurship, finance, technology,
+            and career development.
+          </p>
+        </div>
+
+        <div className="info-box info-box-tall">
+          <h3>📚 Projects to Learn On</h3>
+          <p>
+            Engage in practical, real-world projects that build essential life and career skills:
+          </p>
+          <ul style={{ marginTop: "1rem", paddingLeft: "1.5rem", color: "#475569" }}>
+            <li>Credit Card & Financial Management</li>
+            <li>Tax Document Understanding</li>
+            <li>Apartment & Employment Applications</li>
+            <li>Resume Building & Interview Prep</li>
+            <li>Business Pitches & Budget Planning</li>
+            <li>Professional Communication</li>
+            <li>Insurance & Banking Essentials</li>
+            <li>Time Management & Networking</li>
+          </ul>
+        </div>
+
+        <div className="info-box">
+          <h3>📖 Resources + Topics</h3>
+          <p>
+            Access curated learning materials, workshops, and guides covering financial literacy, career development,
+            life skills, and professional communication. Our resources are designed to support your growth at every
+            stage of your journey.
+          </p>
+        </div>
+
+        <div className="info-box">
+          <h3>🎓 Students Criteria</h3>
+          <p>
+            We welcome motivated students who demonstrate a willingness to learn, strong work ethic, and commitment
+            to personal growth. Applicants are evaluated based on their strengths, areas for improvement, and
+            alignment with project requirements.
+          </p>
+        </div>
+      </div>
+
       <AICareerAdvisor />
     </main>
   );
