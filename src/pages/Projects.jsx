@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const DEFAULT_PROJECTS = [
+export const PROJECT_DIRECTORY = [
   {
     id: 1,
     title: "Business Pitch",
@@ -19,7 +19,7 @@ const DEFAULT_PROJECTS = [
 ];
 
 export default function Projects() {
-  const [projects, setProjects] = useState(DEFAULT_PROJECTS);
+  const [projects, setProjects] = useState(PROJECT_DIRECTORY);
   const [newProject, setNewProject] = useState({ title: "", description: "" });
 
   const handleSubmit = (e) => {
